@@ -53,8 +53,8 @@ const userSchema = new mongoose.Schema({
         }
     ]
 }, {
-        timestamps: true
-    }
+    timestamps: true
+}
 );
 
 userSchema.virtual('tasks', {
@@ -80,7 +80,7 @@ userSchema.methods.generateAuthToken = async function () {
         //console.log(typeof(token));
         user.tokens.push({ token: tok });
         await user.save();
-        
+
         return tok;
     } catch (e) {
         console.log(e);
@@ -89,8 +89,8 @@ userSchema.methods.generateAuthToken = async function () {
 
 userSchema.statics.findByCredentials = async (email, password) => {
     try {
-        let user = await User.findOne({ email: email }, { age: 1, name: 1, email: 1, createdAt: 1, updatedAt: 1, password: 1, tokens: 1 });
-
+        let user = await User.findOne({ email: email },
+            { age: 1, name: 1, email: 1, createdAt: 1, updatedAt: 1, password: 1, tokens: 1 });
         //console.log(user);
         if (!user) throw Error('Unable to login!');
 
